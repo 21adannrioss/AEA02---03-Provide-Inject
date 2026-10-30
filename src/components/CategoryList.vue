@@ -2,14 +2,27 @@
   <div class="category-list">
     <h2>Productes</h2>
     <div class="products">
-      <ProductItem v-for = "p in products" :key="p.name" :product="p"/>
+      <ProductItem v-for="p in products" :key="p.name" :product="p" />
     </div>
   </div>
 </template>
 
 <script setup>
-  import { inject } from 'vue'
-  import ProductItem from './ProductItem.vue'
+import ProductItem from './ProductItem.vue'
 
-  const products = inject('products')
+// Els productes arriben del component pare per props
+defineProps({
+  products: {
+    type: Array,
+    required: true
+  }
+})
 </script>
+
+<style scoped>
+.products {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+</style>
